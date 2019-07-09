@@ -1,0 +1,5 @@
+id,status,ip,latitude,longitude,send_date,reported,modified_date,email,first_name,last_name,position
+1,Email Sent,,0,0,,FALSE,,First.Last1@example.com,First,Last1,
+2,Email Opened,2.2.2.2,0,0,,FALSE,,First.Last2@example.com,First,Last2,
+3,Clicked Link,3.3.3.3,0,0,,FALSE,,First.Last3@example.com,First,Last3,
+4,Submitted Data,4.4.4.4,0,0,,FALSE,,First.Last4@example.com,First,Last4,
