@@ -1,4 +1,4 @@
-﻿# Must have the following files:
+# Must have the following files:
 # Events.csv
 # Results.csv
 
@@ -129,7 +129,7 @@ $eventsCsvPath = $goPhishOutputCsvDirectory + $eventsCsvFilename
 if((Test-Path $eventsCsvPath) -eq $false) {'"' + $eventsCsvPath + '"' + " not found."; exit}
 
 # Set the header for the tokens.csv file
-$eventsCsvHeader = "Email Address", "Timestamp", "Status", "Details"
+$eventsCsvHeader = "Campaign ID","Email Address", "Timestamp", "Status", "Details"
 
 # Import the tokens.csv without the header row
 $eventsCsvFile = Import-Csv -Path $eventsCsvPath -Header $eventsCsvHeader | Where-Object "Email Address" -ne "email"
@@ -233,6 +233,7 @@ forEach($email in $emails){
     $openedEmail = if($tempRow.Status -match "Email Opened"){"Yes"}else{"No"}
     $clickedLink = if($tempRow.Status -match "Clicked Link"){"Yes"}else{"No"}
     $submittedData = if($tempRow.Status -match "Submitted Data"){"Yes"}else{"No"}
+    $reportedEmail = if($tempRow.Status -match "Reported"){"Yes"}else{"No"}
 
     # Add members to the object
     $tempObject | Add-Member -Name "ID" -Value $tempRowUnique.ID -MemberType NoteProperty
@@ -243,6 +244,7 @@ forEach($email in $emails){
     $tempObject | Add-Member -Name "Opened Email" -Value $openedEmail -MemberType NoteProperty
     $tempObject | Add-Member -Name "Clicked Link" -Value $clickedLink -MemberType NoteProperty
     $tempObject | Add-Member -Name "Submitted Data" -Value $submittedData -MemberType NoteProperty
+    $tempObject | Add-Member -Name "Reported" -Value $reportedEmail -MemberType NoteProperty
 
     # Update the array of objects
     $arrayOfObjects += $tempObject
